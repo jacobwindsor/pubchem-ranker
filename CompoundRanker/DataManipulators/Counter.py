@@ -19,6 +19,9 @@ class Counter(object):
 
         Returns: Integer count
         """
+        if cid is None:
+            raise TypeError("CID cannot be none")
+
         uri = 'https://pubchem.ncbi.nlm.nih.gov/sdq/sdqagent.cgi?' \
               'infmt=json&outfmt=json' \
               '&query={"select":["*"],"collection":"%s",' \
