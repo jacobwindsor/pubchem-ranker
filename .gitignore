@@ -1,0 +1,8 @@
+.idea/
+*.pyc
+CompoundRanker/__pycache__/
+*.swp
+*.un
+*~
+.pyc
+/CompoundRanker/database.db

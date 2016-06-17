@@ -1,0 +1,89 @@
+{% extends "layout.html" %}
+{% block body %}
+
+    <div class="row">
+        <h1>PubChem Ranker</h1>
+        <h2>Ranks compounds by the amount of pathways or BioAssays found in PubChem.</h2>
+        <h4>Page #{{page}}</h4>
+    </div>
+
+    <div class="row">
+        <div class="btn-group pull-left">
+            <button type="button" class="btn btn-default dropdown-toggle btn-secondary" data-toggle="dropdown">
+                 Dataset:
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                {% for dataset in datasets %}
+                    <li><a href="/list/page/{{page}}?rank={{ rank }}&dataset={{ dataset }}">{{ dataset }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="btn-group pull-right">
+            <button type="button" class="btn btn-default dropdown-toggle btn-primary" data-toggle="dropdown">
+                 Rank by:
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href="/list/page/{{page}}?rank=pathway&dataset={{ cur_dataset }}">Pathways</a></li>
+                <li><a href="/list/page/{{ page }}?rank=assay&dataset={{ cur_dataset }}">Assays</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="panel-group" id="ranker">
+            {% for voc in vocs %}
+                <div class="panel">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a data-toggle="collapse" href="#panel_{{ voc.cas}}">
+                                {{ voc.iupac }}
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="panel_{{voc.cas}}" class="panel-collapse collapse panel-body">
+                        {% set cids_counts = voc.CID_counts.split(',') %}
+                        {% for cid_count in cids_counts %}
+                            {% set cid = cid_count.split('#')[0] %}
+                            {% set assay_count = cid_count.split('#')[1] %}
+                            {% set pathway_count = cid_count.split('#')[2] %}
+
+                            <table class="table table-striped" style="margin-bottom: 20px">
+                                <thead>
+                                    <tr>
+                                        <td><strong>CID</strong></td>
+                                        <td><strong>CAS</strong></td>
+                                        <td><strong>Number of Pathways</strong></td>
+                                        <td><strong>Number of BioAssays</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{cid}}</td>
+                                        <td>{{voc.cas}}</td>
+                                        <td>{{pathway_count}}</td>
+                                        <td>{{assay_count}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <a href="https://pubchem.ncbi.nlm.nih.gov/compound/{{ cid }}" class="btn btn-default"
+                               target="_blank">
+                                View on PubChem
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <nav>
+        <ul class="pager">
+            <li class="previous"><a href="/list/page/{{prev}}?rank={{ rank }}&dataset={{ cur_dataset }}">
+                <span aria-hidden="true">&larr;</span> Previous</a></li>
+            <li class="next"><a href="/list/page/{{next}}?rank={{ rank }}&dataset={{ cur_dataset }}">
+                Next <span aria-hidden="true">&rarr;</span></a></li>
+        </ul>
+    </nav>
+{% endblock %}
