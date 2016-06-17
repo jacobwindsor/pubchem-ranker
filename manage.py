@@ -31,10 +31,13 @@ def fillmetabs(path, dataset):
 
 
 @manager.command
-def fillcids():
+def fillcids(dataset):
     """Gather the CIDs from PubChem for the metabolites and save to pubchem_compounds table"""
+    query = "SELECT id FROM datasets WHERE name = ?"
+    dataset_id = str(query_db(query, [dataset])[0]['id'])
+
     gatherer = CIDGatherer()
-    data = gatherer.harvest()
+    data = gatherer.harvest(dataset_id)
     gatherer.save(data)
     print("Saved!")
 

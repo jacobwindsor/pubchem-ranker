@@ -6,7 +6,7 @@ from requests import exceptions, get
 
 
 class CIDGatherer(object):
-    def harvest(self):
+    def harvest(self, dataset_id):
         """
         Harvest all of the CIDs from PubChem
         :return: List of tuples [(cid, metab_id),]
@@ -14,8 +14,8 @@ class CIDGatherer(object):
         # Query only returns the metabolites that don't already have CIDs associated
         query = "SELECT t1.id, t1.cas from metabolites t1 " \
                 "LEFT JOIN pubchem_compounds t2 ON t2.metab_ID = t1.id " \
-                "WHERE t2.metab_ID is NULL "
-        results = query_db(query)
+                "WHERE t2.metab_ID is NULL AND t1.dataset_id is ?"
+        results = query_db(query, dataset_id)
         count = len(results)
 
         since_wait = 0
