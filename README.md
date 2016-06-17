@@ -1,9 +1,8 @@
-# VOC Project
-This is an application built to aid the identification of an ~800 strong list of VOCs given for the 3000 level MSP project.
-The application ranks VOCs by data gathered on PubChem in order to make identification easier.
+# PubChem Ranker
+This is a simple application built on top of Flask that allows for the ranking of compounds by the amount of BioAssays
+and BioSystems found in PubChem. A web-based interface is provided for viewing the ranked compounds and some commands
+for setting up and running the ranker.
 
-##Web Page
-Visit http://jacobwindsor.pythonanywhere.com to view an example of this application.
 
 ## Setup
 1. Clone this repository
@@ -25,11 +24,3 @@ Datasets must be in CSV format with each compound on one row. The CAS number tak
 IUPAC name in brackets. This data must be in the first column, anything in other columns will be ignored
 
     <CAS> (<IUPAC>)
-
-## DUPLICATE DATA
-One Duplicate CAS ID with different IUPAC names was found when inserting into database. Log of SQLite query:
-
-    INSERT INTO metabolites(CAS, IUPAC) VALUES ('1072-43-1','methylthiirane ')
-    INSERT INTO metabolites(CAS, IUPAC) VALUES ('1072-43-1','propylenesulfide ')
-    
-The `methyliirane` row was removed from the dataset to reslove the issue (row 168)
