@@ -35,6 +35,8 @@ def fillcids(dataset):
     """Gather the CIDs from PubChem for the metabolites and save to pubchem_compounds table"""
     query = "SELECT id FROM datasets WHERE name = ?"
     dataset_id = str(query_db(query, [dataset])[0]['id'])
+    if not dataset_id:
+        raise TypeError("No dataset with that name")
 
     gatherer = CIDGatherer()
     data = gatherer.harvest(dataset_id)
@@ -46,6 +48,9 @@ def fillcounts(dataset):
     """Run the counter (ranker) for the metabolites and save to database"""
     query = "SELECT id FROM datasets WHERE name = ?"
     dataset_id = str(query_db(query, [dataset])[0]['id'])
+
+    if not dataset_id:
+        raise TypeError("No dataset with that name")
 
     counter = Counter()
     data = counter.count(dataset_id)
