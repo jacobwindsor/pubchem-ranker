@@ -12,12 +12,8 @@ for setting up and running the ranker.
 4. run `python manage.py initdb` to intitialize the database
 5. run `python manage.py fillmetabs <path> <name>` where path is the absolute path to the CSV file containing the dataset
 and name is the name you wish to call the dataset
-6. run `python manage.py fillcounts` to fill the counts table. Takes a long time
+6. run `python manage.py fillcounts <name>` to fill the counts table where name is the name of the dataset you wish to count. Takes a long time
 7. run `python manage.py runserver` to run the server
-
-
-Note: You may also run `python manage.py runall <path> <name>` to run all of the commands to set up the application.
-However, this will destroy  any data previously in the tables
 
 ## Dataset format
 Datasets must be in CSV format with each compound on one row. The CAS number takes the first position followed by the

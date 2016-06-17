@@ -39,33 +39,15 @@ def fillcids():
     print("Saved!")
 
 @manager.command
-def fillcounts():
+def fillcounts(dataset):
     """Run the counter (ranker) for the metabolites and save to database"""
+    query = "SELECT id FROM datasets WHERE name = ?"
+    dataset_id = str(query_db(query, [dataset])[0]['id'])
+
     counter = Counter()
-    data = counter.count()
+    data = counter.count(dataset_id)
     counter.save(data)
     print("Saved!")
-
-@manager.command
-def runall(path, dataset):
-    """Run all of the commands to start a new CompoundRanker app"""
-    sys.stdout.write("Refreshing the database")
-    sys.stdout.flush()
-    init_db()
-
-    sys.stdout.write("Filling the metabolites table.")
-    sys.stdout.flush()
-    fillmetabs(path, dataset)
-
-    sys.stdout.write("Filling the pubchem_compounds table")
-    sys.stdout.flush()
-    fillcids()
-
-    sys.stdout.write("Filling the counts table")
-    sys.stdout.flush()
-    fillcounts()
-
-    print("Done!")
 
 
 if __name__ == "__main__":
