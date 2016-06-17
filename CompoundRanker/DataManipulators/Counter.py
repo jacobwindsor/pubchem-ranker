@@ -67,7 +67,7 @@ class Counter(object):
         query = "SELECT t2.id as compound_id, t2.cid from metabolites t1 " \
                 "LEFT JOIN pubchem_compounds t2 ON t2.metab_ID = t1.id " \
                 "LEFT JOIN pubchem_counts t3 ON t3.compound_id = t2.id " \
-                "WHERE t3.compound_id is NULL AND t1.dataset_id is ?"
+                "WHERE t3.compound_id is NULL AND t1.dataset_id is ? AND t2.cid is NOT NULL"
         results = query_db(query, dataset_id)
         count = len(results)
 
