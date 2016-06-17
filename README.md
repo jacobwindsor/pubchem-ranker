@@ -8,11 +8,11 @@ for setting up and running the ranker.
 1. Clone this repository
 2. Make sure you have python3 installed
 3. cd into the project directory and run `pip install -r requirements.txt`
-4. Go to `VOCRanker/__init__.py` and fill in the "ADMIN_EMAIL" setting. Required for Pubchem
+4. Go to `CompoundRanker/__init__.py` and fill in the "ADMIN_EMAIL" setting. Required for Pubchem
 4. run `python manage.py initdb` to intitialize the database
 5. run `python manage.py fillmetabs <path> <name>` where path is the absolute path to the CSV file containing the dataset
 and name is the name you wish to call the dataset
-6, run `python manage.py fillcids <name>` to gather and fill the CIDs table where name is the dataset name
+6. run `python manage.py fillcids <name>` to gather and fill the CIDs table where name is the dataset name
 7. run `python manage.py fillcounts <name>` to fill the counts table where name is the name of the dataset you wish to count. Takes a long time
 8. run `python manage.py runserver` to run the server
 
