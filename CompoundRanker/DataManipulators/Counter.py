@@ -20,7 +20,7 @@ class Counter(object):
         Returns: Integer count
         """
         if cid is None:
-            raise TypeError("CID cannot be none")
+            raise TypeError("CID cannot be none. Are you sure you ran 'fillcids'?")
 
         uri = 'https://pubchem.ncbi.nlm.nih.gov/sdq/sdqagent.cgi?' \
               'infmt=json&outfmt=json' \
@@ -66,11 +66,11 @@ class Counter(object):
 
         # Only run counts for the compounds that have no counts
         # If want to run all counts again then must first truncate the tables
-        query = "SELECT t1.dataset_id, t3.id as compound_id, t2.cid from metabolites t1 " \
+        query = "SELECT t2.id as compound_id, t2.cid from metabolites t1 " \
                 "LEFT JOIN pubchem_compounds t2 ON t2.metab_ID = t1.id " \
                 "LEFT JOIN pubchem_counts t3 ON t3.compound_id = t2.id " \
                 "WHERE t3.compound_id is NULL AND t1.dataset_id is ?"
-        results = query_db(query, [dataset_id])
+        results = query_db(query, dataset_id)
         count = len(results)
 
         response = []
