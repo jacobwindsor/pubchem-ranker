@@ -8,7 +8,7 @@ for setting up and running the ranker.
 1. Clone this repository
 2. Make sure you have python3 installed
 3. cd into the project directory and run `pip install -r requirements.txt`
-4. Go to VOCRanker/__init__.py and fill in the "ADMIN_EMAIL" setting. Required for Pubchem
+4. Go to `VOCRanker/__init__.py` and fill in the "ADMIN_EMAIL" setting. Required for Pubchem
 4. run `python manage.py initdb` to intitialize the database
 5. run `python manage.py fillmetabs <path> <name>` where path is the absolute path to the CSV file containing the dataset
 and name is the name you wish to call the dataset
@@ -16,8 +16,8 @@ and name is the name you wish to call the dataset
 7. run `python manage.py runserver` to run the server
 
 
-Note: You may also run `python manage.py runall <path> <name> to run all of the commands to set up the application.
-However, this will destroy  any data previously in the tables`
+Note: You may also run `python manage.py runall <path> <name>` to run all of the commands to set up the application.
+However, this will destroy  any data previously in the tables
 
 ## Dataset format
 Datasets must be in CSV format with each compound on one row. The CAS number takes the first position followed by the
