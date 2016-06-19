@@ -23,11 +23,11 @@ def index(page):
     if request.args.get('dataset'):
         query_dataset = "SELECT id from datasets WHERE name = ? "
         dataset_id = str(query_db(query_dataset, [request.args.get('dataset')])[0]['id'])
-        cur_dataset = request.args.get('dataset') or datasets[0]
+        cur_dataset = request.args.get('dataset')
     else:
         query_dataset =  "SELECT id from datasets LIMIT 1"
         dataset_id = str(query_db(query_dataset)[0]['id'])
-        cur_dataset = query_db("SELECT name from datasets WHERE id = ?", dataset_id)
+        cur_dataset = query_db("SELECT name from datasets WHERE id = ?", dataset_id)[0]['name']
 
 
     query = "SELECT id, IUPAC, CAS, max_count, " \
