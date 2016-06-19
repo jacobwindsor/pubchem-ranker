@@ -69,6 +69,8 @@ class Counter(object):
                 "LEFT JOIN pubchem_counts t3 ON t3.compound_id = t2.id " \
                 "WHERE t3.compound_id is NULL AND t1.dataset_id is ? AND t2.cid is NOT NULL"
         results = query_db(query, dataset_id)
+        sys.stdout.write(str(results))
+        sys.stdout.flush()
         count = len(results)
 
         response = []
