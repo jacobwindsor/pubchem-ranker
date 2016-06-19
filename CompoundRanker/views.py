@@ -23,7 +23,7 @@ def index(page):
     if request.args.get('dataset'):
         query_dataset = "SELECT id from datasets WHERE name = ? "
         dataset_id = str(query_db(query_dataset, [request.args.get('dataset')])[0]['id'])
-        cur_dataset = request.args.get('dataset')
+        cur_dataset = request.args.get('dataset') or datasets[0]
     else:
         query_dataset =  "SELECT id from datasets LIMIT 1"
         dataset_id = str(query_db(query_dataset)[0]['id'])
