@@ -1,3 +1,5 @@
+<strong>DOI: 10.6084/m9.figshare.3465008.v1</strong>
+
 # PubChem Ranker
 This is a simple application built on top of Flask that allows for the ranking of compounds by the amount of BioAssays
 and BioSystems found in PubChem. A web-based interface is provided for viewing the ranked compounds and some commands
