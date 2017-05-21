@@ -1,25 +1,41 @@
-<strong>DOI: 10.6084/m9.figshare.3465008.v1</strong>
+# [pubchem-ranker](https://github.com/jacobwindsor/pubchem-ranker)
 
-# PubChem Ranker
-This is a simple application built on top of Flask that allows for the ranking of compounds by the amount of BioAssays
-and BioSystems found in PubChem. A web-based interface is provided for viewing the ranked compounds and some commands
-for setting up and running the ranker.
+[![NPM version](http://img.shields.io/npm/v/pubchem-ranker.svg?style=flat-square)](https://www.npmjs.com/package/pubchem-ranker)
+[![NPM downloads](http://img.shields.io/npm/dm/pubchem-ranker.svg?style=flat-square)](https://www.npmjs.com/package/pubchem-ranker)
+[![Build Status](http://img.shields.io/travis/jacobwindsor/pubchem-ranker/master.svg?style=flat-square)](https://travis-ci.org/jacobwindsor/pubchem-ranker)
+[![Coverage Status](https://img.shields.io/coveralls/jacobwindsor/pubchem-ranker.svg?style=flat-square)](https://coveralls.io/jacobwindsor/pubchem-ranker)
+[![Dependency Status](http://img.shields.io/david/jacobwindsor/pubchem-ranker.svg?style=flat-square)](https://david-dm.org/jacobwindsor/pubchem-ranker)
 
+> 
 
-## Setup
-1. Clone this repository
-2. Make sure you have python3 installed
-3. cd into the project directory and run `pip install -r requirements.txt`
-4. Go to `CompoundRanker/__init__.py` and fill in the "ADMIN_EMAIL" setting. Required for Pubchem
-4. run `python manage.py initdb` to intitialize the database
-5. run `python manage.py fillmetabs <path> <name>` where path is the absolute path to the CSV file containing the dataset
-and name is the name you wish to call the dataset
-6. run `python manage.py fillcids <name>` to gather and fill the CIDs table where name is the dataset name
-7. run `python manage.py fillcounts <name>` to fill the counts table where name is the name of the dataset you wish to count. Takes a long time
-8. run `python manage.py runserver` to run the server
+### How to Install
 
-## Dataset format
-Datasets must be in CSV format with each compound on one row. The CAS number takes the first position followed by the
-IUPAC name in brackets. This data must be in the first column, anything in other columns will be ignored
+```sh
+$ npm install pubchem-ranker
+```
 
-    <CAS> (<IUPAC>)
+### Getting Started
+
+...
+
+### How to Test
+
+Run one, or a combination of the following commands to lint and test your code:
+
+```sh
+$ npm run lint          # Lint the source code with ESLint
+$ npm test              # Run unit tests with Mocha
+$ npm run test:watch    # Run unit tests with Mocha, and watch files for changes
+$ npm run test:cover    # Run unit tests with code coverage by Istanbul
+```
+
+To launch the documentation site, run:
+
+```sh
+$ npm install -g easystatic
+$ npm start
+```
+
+### License
+
+MIT © 2016 Jacob Windsor
