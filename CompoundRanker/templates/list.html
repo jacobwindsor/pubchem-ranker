@@ -15,7 +15,7 @@
             </button>
             <ul class="dropdown-menu">
                 {% for dataset in datasets %}
-                    <li><a href="/list/page/{{page}}?rank={{ rank }}&dataset={{ dataset }}">{{ dataset }}</a></li>
+                    <li><a href="/{{ baseUrl }}/page/{{page}}?rank={{ rank }}&dataset={{ dataset }}">{{ dataset }}</a></li>
                 {% endfor %}
             </ul>
         </div>
@@ -67,9 +67,9 @@
 
     <nav>
         <ul class="pager">
-            <li class="previous"><a href="/list/page/{{prev}}?rank={{ rank }}&dataset={{ cur_dataset }}">
+            <li class="previous"><a href="/{{ baseUrl }}/page/{{prev}}?rank={{ rank }}&dataset={{ cur_dataset }}">
                 <span aria-hidden="true">&larr;</span> Previous</a></li>
-            <li class="next"><a href="/list/page/{{next}}?rank={{ rank }}&dataset={{ cur_dataset }}">
+            <li class="next"><a href="/{{ baseUrl }}/page/{{next}}?rank={{ rank }}&dataset={{ cur_dataset }}">
                 Next <span aria-hidden="true">&rarr;</span></a></li>
         </ul>
     </nav>

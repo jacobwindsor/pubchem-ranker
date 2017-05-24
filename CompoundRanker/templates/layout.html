@@ -18,6 +18,22 @@
 </head>
 <body>
     <div class="container">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              Ranker
+            </div>
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="/rank/pubchem/pathways">Rank by PubChem Pathways</a>
+                </li>
+                <li>
+                    <a href="/rank/pubchem/assays">Rank by PubChem Assays</a>
+                </li>
+            </ul>
+          </div>
+        </nav>
+
         {% block body %}{% endblock %}
     </div>
 </body>
