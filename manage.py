@@ -2,7 +2,8 @@ import sys
 from flask_script import Manager
 from CompoundRanker import app
 from CompoundRanker.DataManipulators.CIDGatherer import CIDGatherer
-from CompoundRanker.DataManipulators.Counter import Counter
+from CompoundRanker.DataManipulators.PubChemAssayCounter import PubChemAssayCounter
+from CompoundRanker.DataManipulators.PubChemPathwayCounter import PubChemPathwayCounter
 from CompoundRanker.DataManipulators.DataGatherer import DataGatherer
 from CompoundRanker.database import init_db, query_db
 
@@ -53,9 +54,8 @@ def fillcounts(dataset):
     except TypeError:
         raise TypeError("No dataset with name '%s'" % dataset)
 
-    counter = Counter()
-    data = counter.count(dataset_id)
-    counter.save(data)
+    PubChemPathwayCounter().count(dataset_id).save()
+    PubChemAssayCounter().count(dataset_id).save()
     print("Saved!")
 
 

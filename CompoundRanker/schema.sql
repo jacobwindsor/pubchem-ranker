@@ -17,11 +17,18 @@ create table pubchem_compounds (
   FOREIGN KEY(metab_ID) REFERENCES metabolites(ID)
 );
 
-drop table if exists pubchem_counts;
-CREATE TABLE pubchem_counts (
+drop table if exists pubchem_pathway_counts;
+CREATE TABLE pubchem_pathway_counts (
   id integer PRIMARY KEY AUTOINCREMENT,
-  assay_count integer DEFAULT 0 NOT NULL,
-  pathway_count integer DEFAULT 0 NOT NULL,
+  count integer DEFAULT 0 NOT NULL,
+  compound_id integer UNIQUE NOT NULL,
+  FOREIGN KEY(compound_id) REFERENCES pubchem_compounds(id)
+);
+
+drop table if exists pubchem_assay_counts;
+CREATE TABLE pubchem_assay_counts (
+  id integer PRIMARY KEY AUTOINCREMENT,
+  count integer DEFAULT 0 NOT NULL,
   compound_id integer UNIQUE NOT NULL,
   FOREIGN KEY(compound_id) REFERENCES pubchem_compounds(id)
 );

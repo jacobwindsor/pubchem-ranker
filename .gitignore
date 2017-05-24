@@ -6,3 +6,4 @@ CompoundRanker/__pycache__/
 *~
 .pyc
 /CompoundRanker/database.db
+/metabolites.csv
