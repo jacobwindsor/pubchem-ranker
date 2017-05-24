@@ -55,7 +55,7 @@ def fillcounts(dataset):
         raise TypeError("No dataset with name '%s'" % dataset)
 
     PubChemPathwayCounter().count(dataset_id).save()
-    PubChemAssayCounter().count(dataset_id).save()
+    PubChemAssayCounter().count(dataset_id).save("pubchem_assay_counts")
     print("Saved!")
 
 
