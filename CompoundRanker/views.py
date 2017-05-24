@@ -4,10 +4,7 @@ from CompoundRanker import app
 from .database import query_db
 
 
-@app.route('/', defaults={'page': 1})
-@app.route('/rank/pubchem_pathways/', defaults={'page': 1})
-@app.route('/rank/pubchem_pathways/page/<int:page>')
-def index(page):
+def _generate_list_route(count_table_name, page):
     limit = 15
     offset = (page-1)*limit
     datasets_query = "SELECT name from datasets"
@@ -36,13 +33,19 @@ def index(page):
                 "t3.count as max_count " \
                 "FROM metabolites t1 " \
                 "LEFT JOIN pubchem_compounds t2 ON t2.metab_ID = t1.id " \
-                "LEFT JOIN pubchem_pathway_counts t3 on t3.compound_id = t2.id " \
+                "LEFT JOIN {table_name} t3 on t3.compound_id = t2.id " \
                 "WHERE t1.dataset_id = {dataset_id}" \
             ") " \
             "GROUP BY id ORDER BY max_count DESC LIMIT {limit} OFFSET {offset}".\
-        format(limit=limit, offset=offset, dataset_id=dataset_id)
+        format(limit=limit, offset=offset, dataset_id=dataset_id, table_name=count_table_name)
     context = query_db(query)
     return render_template('list.html', rankedBy='PubChem Pathways', rankedCompounds=context, datasets=datasets,
                            cur_dataset=cur_dataset, page=page, next=(page+1), prev=(page-1))
 
+
+@app.route('/', defaults={'page': 1})
+@app.route('/rank/pubchem_pathways/', defaults={'page': 1})
+@app.route('/rank/pubchem_pathways/page/<int:page>')
+def index(page):
+    return _generate_list_route('pubchem_pathway_counts', page)
 
