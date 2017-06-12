@@ -1,4 +1,5 @@
-<strong>DOI: 10.6084/m9.figshare.3465008.v1</strong>
+[![DOI](https://zenodo.org/badge/61376685.svg)](https://zenodo.org/badge/latestdoi/61376685)
+
 
 # PubChem Ranker
 This is a simple application built on top of Flask that allows for the ranking of compounds by the amount of BioAssays
